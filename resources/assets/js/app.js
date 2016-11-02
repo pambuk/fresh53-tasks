@@ -1,7 +1,13 @@
-require('./bootstrap');
+// require('./bootstrap');
 
-// Vue.component('example', require('./components/Example.vue'));
+import Vue from 'vue';
+import Counter from './components/Counter.vue';
+import store from './store';
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store,
+    components: {
+        Counter
+    }
 });
