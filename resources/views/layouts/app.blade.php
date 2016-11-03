@@ -5,15 +5,17 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Fresh53</title>
+    <title>Fresh53 - Counter, Todos</title>
 </head>
 <body>
 
-    <div class="container">
-        @yield('content')
-    </div>
+<div class="container">
+    @yield('content')
+</div>
 
-    @yield('scripts')
+@section('scripts')
+    <script src="/js/app.js"></script>
+@show
 
 </body>
 </html>

@@ -5,16 +5,14 @@
 </template>
 
 <script>
+    import {mapState} from 'vuex';
+
     export default {
         methods: {
             increment: function () {
                 this.$store.commit('increment');
             }
         },
-        computed: {
-            count() {
-                return this.$store.state.count;
-            }
-        }
+        computed: mapState(['count'])
     }
 </script>

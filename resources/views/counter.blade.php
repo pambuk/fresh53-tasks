@@ -7,7 +7,3 @@
         <counter></counter>
     </div>
 @endsection
-
-@section('scripts')
-    <script src="/js/app.js"></script>
-@endsection

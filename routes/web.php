@@ -22,3 +22,7 @@ Route::get('vuex', function () {
 Route::get('counter', function () {
     return view('counter');
 });
+
+Route::get('todos', function () {
+    return view('todos');
+});

@@ -179,7 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         \GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
-
+        \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
     ],
 
     /*
