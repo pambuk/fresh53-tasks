@@ -26,3 +26,7 @@ Route::get('counter', function () {
 Route::get('todos', function () {
     return view('todos');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

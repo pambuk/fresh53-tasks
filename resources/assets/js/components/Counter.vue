@@ -1,17 +1,20 @@
 <template>
     <div>
-        Counter: {{ count }} <button @click="increment">Increment</button>
+        Counter: {{ count }}
+        <button @click="increment">Increment Mutation</button>
+        <button @click="incrementAsync">Increment Action</button>
     </div>
 </template>
 
 <script>
-    import {mapState} from 'vuex';
+    import {mapState, mapMutations} from 'vuex';
 
     export default {
         methods: {
-            increment: function () {
-                this.$store.commit('increment');
-            }
+            incrementAsync() {
+                this.$store.dispatch('incrementAsync');
+            },
+            ...mapMutations(['increment'])
         },
         computed: mapState(['count'])
     }
