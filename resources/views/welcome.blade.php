@@ -4,12 +4,9 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
+        <title>Todoodoos</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-
         <!-- Styles -->
         <style>
             html, body {
@@ -78,37 +75,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    to zrób: <a href="http://redmine.polcode.com/issues/21756">http://redmine.polcode.com/issues/21756</a>
-                </div>
 
-                <div>
-                    <pre>
-Stwórz aplikację, z możliwością logowania oraz rejestracji(username, email, password, z linkiem
-
-aktywacyjnym). Po zalogowaniu powinno wyświetlić się menu z odsyłaczami do:
-
--ustawień, gdzie po lewej stronie będzie panel, który będzie wyświetlać nazwę użytkownika
-
-oraz email jako readonly, a po prawej formularz, dzięki któremu użytkownik będzie mógł zmienić
-
-swoje hasło(za potwierdzeniem starego hasła).
-
--zadań, gdzie po lewej stronie będzie input na zadanie oraz datę jego planowanego
-
-zakończenia, a po prawej będą dwie listy: dodanych zadań do zrobienia sortowana wg planowanego
-
-czasu zakończenia, ikony do ich usuwania i zaznaczania ich jako zrobione oraz zadań zaznaczonych
-
-jako zrobione z ikoną do usuwania.
-
--wylogowania
-
-Aplikacja powinna wykorzystać vue.js oraz dowolnego frameworka. Wszystkie dane powinny być zapisywane w bazie
-
-danych.
-                    </pre>
-                </div>
             </div>
         </div>
     </body>

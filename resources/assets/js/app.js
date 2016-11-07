@@ -1,4 +1,4 @@
-// require('./bootstrap');
+require('./bootstrap');
 
 import Vue from 'vue';
 import Counter from './components/Counter.vue';
