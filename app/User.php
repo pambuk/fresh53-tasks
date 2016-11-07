@@ -26,4 +26,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function activate()
+    {
+        $this->active = 1;
+        $this->save();
+
+        return $this;
+    }
 }
