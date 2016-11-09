@@ -47,7 +47,7 @@
                             <li><a href="{{ url('/register') }}">Register</a></li>
                         @else
                             <li>
-                                <a href="/tasks">Tasks</a>
+                                <router-link to="/tasks">Tasks</router-link>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -67,7 +67,7 @@
                                         </form>
                                     </li>
                                     <li>
-                                        <a>Settings</a>
+                                        <router-link to="/settings">Settings</router-link>
                                     </li>
                                 </ul>
                             </li>
