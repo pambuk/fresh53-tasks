@@ -1,3 +1,5 @@
+require('./bootstrap');
+
 import Vue from 'vue';
 import Todos from './components/Todos.vue';
 import store from './store-todos';
