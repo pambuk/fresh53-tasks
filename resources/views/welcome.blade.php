@@ -90,7 +90,6 @@
         <a href="http://www.youtube.com/watch?v=BsekcY04xvQ" id="bgndVideo" class="player"
            data-property= "{videoURL:'BsekcY04xvQ',containment:'body', showControls:false, autoPlay:true, loop:false,
   vol:50, startAt:0, opacity:1, addRaster:false, quality:'default'}" >
-
         </a>
     </div>
 </div>

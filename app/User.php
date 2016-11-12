@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'api_token',
     ];
 
     /**
@@ -24,8 +24,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'api_token',
     ];
+
+    public function setPasswordAttribute($value)
+    {
+        $this->password = \Hash::make($value);
+    }
 
     public function activate()
     {
@@ -33,5 +38,10 @@ class User extends Authenticatable
         $this->save();
 
         return $this;
+    }
+
+    public static function getApiToken()
+    {
+        return \Auth::check() ? \Auth::user()->api_token : '';
     }
 }

@@ -13,7 +13,9 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     <!-- Scripts -->
-    <script>window.Laravel = <?= json_encode(['csrfToken' => csrf_token(),]); ?></script>
+    <script>
+        window.Laravel = <?= json_encode(['csrfToken' => csrf_token(), 'apiToken' => \App\User::getApiToken(), ]); ?>
+    </script>
 </head>
 <body>
     <div id="app">
@@ -56,6 +58,9 @@
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+                                        <router-link to="/settings">Settings</router-link>
+                                    </li>
+                                    <li>
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -65,9 +70,6 @@
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                    </li>
-                                    <li>
-                                        <router-link to="/settings">Settings</router-link>
                                     </li>
                                 </ul>
                             </li>

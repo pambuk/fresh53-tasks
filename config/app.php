@@ -180,6 +180,7 @@ return [
 
         \GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
         \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        \Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*

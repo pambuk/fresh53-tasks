@@ -13,7 +13,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Validator::extend('old_password', function ($attribute, $value) {
+            return \Hash::check($value, \Auth::user()->password);
+        }, "Old password doesn't match");
     }
 
     /**

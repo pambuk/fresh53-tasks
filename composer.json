@@ -10,7 +10,8 @@
         "graham-campbell/exceptions": "^9.1",
         "barryvdh/laravel-ide-helper": "^2.2",
         "laravel/passport": "^1.0",
-        "guzzlehttp/guzzle": "^6.2"
+        "guzzlehttp/guzzle": "^6.2",
+        "barryvdh/laravel-debugbar": "^2.3"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

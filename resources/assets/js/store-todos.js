@@ -30,5 +30,7 @@ export default new Vuex.Store({
         todos: state => {
             return state.todos;
         }
+    },
+    actions: {
     }
 });

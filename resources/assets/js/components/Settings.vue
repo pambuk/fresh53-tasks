@@ -1,21 +1,35 @@
 <template>
     <div>
-        <h4>Settings</h4>
-        <span class="help-block">Password change</span>
+        <h5>Password change</h5>
         <div class="form-group col-md-4 col-md-offset-4">
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="New password">
+                <input v-model="password.new" type="password" class="form-control" placeholder="New password">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Repeat new password">
+                <input v-model="password.repeat" type="password" class="form-control" placeholder="Repeat new password">
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Old password">
+                <input v-model="password.old" type="password" class="form-control" placeholder="Old password">
             </div>
-            <button class="btn btn-success pull-right">Change</button>
+            <button @click="changePassword(password)" class="btn btn-success pull-right">Change</button>
         </div>
     </div>
 </template>
 <script>
-    export default {}
+    import {mapActions} from 'vuex';
+
+    export default {
+        data() {
+            return {
+                password: {}
+            };
+        },
+        methods: {
+            changePassword() {
+                this.$http.put('/api/change-password', {
+                    password: this.password
+                });
+            }
+        }
+    }
 </script>
