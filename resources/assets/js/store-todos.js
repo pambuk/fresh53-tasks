@@ -32,6 +32,11 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        // changeTodoStatus
+        changeTodoStatus({commit}, todo) {
+console.log(commit, todo);
+            // update status on server
+            // this.$http.put();
+            // commit mutation
+        }
     }
 });

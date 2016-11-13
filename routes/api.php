@@ -19,4 +19,5 @@ Route::group(['middleware' => 'auth:api'], function () {
     });
 
     Route::put('change-password', 'Api\ChangePassword@index');
+    Route::resource('tasks', 'TasksController', ['except' => ['create', 'edit']]);
 });

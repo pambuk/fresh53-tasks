@@ -2,83 +2,84 @@
 
 namespace App\Http\Controllers;
 
+use App\Fresh\TasksService;
+use App\Http\Requests\TaskRequest;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Validation\UnauthorizedException;
 
 class TasksController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param TasksService $tasks
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(TasksService $tasks)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json(
+            $tasks->getAllForUser(\Auth::user())
+        );
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param TaskRequest|Request $request
+     * @param TasksService $tasks
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(TaskRequest $request, TasksService $tasks)
     {
-        //
+        $task = $tasks->add($request->all(), \Auth::user());
+        return response()->json(['task' => $task,]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
+     * @param TasksService $tasks
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id, TasksService $tasks)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return response()->json(['task' => $tasks->get($id), ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param TaskRequest|Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TaskRequest $request, $id, TasksService $tasks)
     {
-        //
+        $task = $tasks->get($id);
+        $task->fill($request->all());
+        $task->save();
+
+        return response()->json(['task' => $task, ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
+     * @param TasksService $tasks
      * @return \Illuminate\Http\Response
+     * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy($id, TasksService $tasks)
     {
-        //
+        $task = $tasks->get($id);
+        if ($task->user->id !== \Auth::user()->id) {
+            throw new \Exception('Task belongs to someone else', Response::HTTP_FORBIDDEN);
+        }
+
+        $tasks->delete($id);
+        return response()->json(['deleted' => $id, ]);
     }
 }
