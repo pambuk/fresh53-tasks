@@ -1,9 +1,16 @@
 <template>
     <div>
+
+        <div>
+            <input type="text" v-model="newTask.description" />
+            <input type="date" v-model="newTask.estimated_end" />
+            <button @click="add(newTask)">Add</button>
+        </div>
+
         <p>Completed: {{ completedCount }}</p>
         <ul>
             <li @click="changeStatus(todo)" v-for="todo in todos" style="cursor:pointer;">
-                {{ todo.id }} {{ todo.text }} {{ todo.done }}
+                {{ todo.id }} {{ todo.description }} {{ todo.status }}
             </li>
         </ul>
     </div>
@@ -14,6 +21,11 @@
     import {mapActions} from 'vuex';
 
     export default {
+        data() {
+            return {
+                newTask: {}
+            };
+        },
         computed: {
             ...mapGetters([
                 'todos',
@@ -23,6 +35,7 @@
         methods: {
             ...mapActions({
                 changeStatus: 'changeTodoStatus',
+                add: 'addTodo'
             })
         }
     }

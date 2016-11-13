@@ -13,10 +13,11 @@ class TasksService
 
     public function add($data, User $user)
     {
-        $task = Task::create($data);
+        $task = new Task();
+        $task->fill($data);
         $user->tasks()->save($task);
 
-        return $task;
+        return $this->get($task->id);
     }
 
     public function get($id)

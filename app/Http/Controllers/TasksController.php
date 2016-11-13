@@ -1,12 +1,10 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Fresh\TasksService;
 use App\Http\Requests\TaskRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Validation\UnauthorizedException;
 
 class TasksController extends Controller
 {
@@ -51,14 +49,16 @@ class TasksController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param TaskRequest|Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param int $id
+     * @param TasksService $tasks
+     * @return Response
+     * @throws \Illuminate\Database\Eloquent\MassAssignmentException
      */
-    public function update(TaskRequest $request, $id, TasksService $tasks)
+    public function update(Request $request, $id, TasksService $tasks)
     {
         $task = $tasks->get($id);
-        $task->fill($request->all());
+        $task->fill($request->input('params.todo'));
         $task->save();
 
         return response()->json(['task' => $task, ]);

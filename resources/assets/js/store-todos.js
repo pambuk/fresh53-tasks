@@ -5,13 +5,12 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        todos: [
-            {id: 1, text: '...', done: true},
-            {id: 2, text: '...', done: false},
-            {id: 3, text: '...', done: false},
-        ]
+        todos: []
     },
     mutations: {
+        addTodo: (state, payload) => {
+            state.todos.push(payload);
+        },
         changeTodoStatus: (state, payload) => {
             state.todos.forEach(todo => {
                 if (payload.id === todo.id) {
@@ -22,7 +21,7 @@ export default new Vuex.Store({
     },
     getters: {
         completed: state => {
-            return state.todos.filter(todo => todo.done);
+            return state.todos.filter(todo => todo.status);
         },
         completedCount: (state, getters) => {
             return getters.completed.length;
@@ -33,10 +32,27 @@ export default new Vuex.Store({
     },
     actions: {
         changeTodoStatus({commit}, todo) {
-console.log(commit, todo);
+            todo.status = !todo.status;
+
             // update status on server
-            // this.$http.put();
-            // commit mutation
+            Vue.http.put('/api/tasks/' + todo.id, {params: {todo: todo}}).then(
+                response => {
+                    commit('changeTodoStatus', response.data.task);
+                },
+                () => {
+                    todo.status = !todo.status;
+                }
+            );
+        },
+        addTodo({commit}, todo) {
+            Vue.http.post('/api/tasks', todo).then(
+                response => {
+                    commit('addTodo', response.data.task);
+                },
+                response => {
+
+                }
+            );
         }
     }
 });
