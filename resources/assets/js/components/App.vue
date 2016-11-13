@@ -16,7 +16,7 @@
     export default {
         computed: {
             header() {
-                return this.$route.name;
+                return this.$route.meta.breadcrumb;
             }
         }
     }

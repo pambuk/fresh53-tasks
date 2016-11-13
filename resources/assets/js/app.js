@@ -13,9 +13,9 @@ Vue.use(VueRouter);
 const Welcome = {template: '<div>You are logged in!</div>'};
 
 const routes = [
-    { path: '/', component: Welcome, name: 'Dashboard' },
-    { path: '/tasks', component: Todos, name: 'Tasks' },
-    { path: '/settings', component: Settings, name: 'Settings' }
+    {path: '/', component: Welcome, meta: {breadcrumb: 'Dashboard'}},
+    {path: '/tasks', component: Todos, meta: {breadcrumb: 'Tasks'}},
+    {path: '/settings', component: Settings, meta: {breadcrumb: 'Settings'}}
 ];
 
 const router = new VueRouter({routes});
