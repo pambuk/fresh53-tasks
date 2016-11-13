@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h5>Password change</h5>
+        <h5>Password change for {{ username }}</h5>
         <div class="form-group col-md-4 col-md-offset-4">
             <div class="form-group">
                 <input v-model="password.new" type="password" class="form-control" placeholder="New password">
@@ -16,13 +16,16 @@
     </div>
 </template>
 <script>
-    import {mapActions} from 'vuex';
-
     export default {
         data() {
             return {
                 password: {}
             };
+        },
+        computed: {
+            username() {
+                return Laravel.user.email;
+            }
         },
         methods: {
             changePassword() {

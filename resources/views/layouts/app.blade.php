@@ -14,7 +14,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <!-- Scripts -->
     <script>
-        window.Laravel = <?= json_encode(['csrfToken' => csrf_token(), 'apiToken' => \App\User::getApiToken(), ]); ?>
+        window.Laravel = <?= json_encode(['csrfToken' => csrf_token(), 'apiToken' => \App\User::getApiToken(), 'user' => Auth::user() ]); ?>
     </script>
 </head>
 <body>

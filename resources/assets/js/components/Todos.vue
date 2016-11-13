@@ -11,7 +11,7 @@
 
 <script>
     import {mapGetters} from 'vuex';
-    import {mapMutations} from 'vuex';
+    import {mapActions} from 'vuex';
 
     export default {
         computed: {
@@ -21,7 +21,7 @@
             ])
         },
         methods: {
-            ...mapMutations({
+            ...mapActions({
                 changeStatus: 'changeTodoStatus',
             })
         }
