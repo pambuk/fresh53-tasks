@@ -13,11 +13,19 @@
     </div>
 </template>
 <script>
+    import {mapActions} from 'vuex';
+
     export default {
         computed: {
             header() {
                 return this.$route.meta.breadcrumb;
             }
+        },
+        methods: {
+            ...mapActions(['loadTodos'])
+        },
+        mounted() {
+            this.loadTodos();
         }
     }
 </script>

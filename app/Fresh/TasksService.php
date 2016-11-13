@@ -8,7 +8,7 @@ class TasksService
 {
     public function getAllForUser(User $user)
     {
-        return $user->tasks();
+        return $user->tasks;
     }
 
     public function add($data, User $user)

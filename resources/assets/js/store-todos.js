@@ -17,6 +17,9 @@ export default new Vuex.Store({
                     todo.done = !todo.done;
                 }
             });
+        },
+        addTodos: (state, payload) => {
+            state.todos = payload;
         }
     },
     getters: {
@@ -51,6 +54,13 @@ export default new Vuex.Store({
                 },
                 response => {
 
+                }
+            );
+        },
+        loadTodos({commit}) {
+            Vue.http.get('/api/tasks').then(
+                (response) => {
+                    commit('addTodos', response.data);
                 }
             );
         }
