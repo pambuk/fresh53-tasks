@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ routeHeader }}</div>
+                    <div class="panel-heading">{{ header }}</div>
                     <div class="panel-body">
                         <router-view></router-view>
                     </div>
@@ -15,8 +15,8 @@
 <script>
     export default {
         computed: {
-            routeHeader() {
-                return this.$router.currentRoute.name;
+            header() {
+                return this.$route.name;
             }
         }
     }
