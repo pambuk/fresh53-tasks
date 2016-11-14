@@ -9,7 +9,7 @@ class ChangePassword extends Controller
     public function index(ChangePasswordRequest $request)
     {
         $user = \Auth::authenticate();
-        $user->password = $request->input('new');
+        $user->password = \Hash::make($request->input('password.new'));
         $user->save();
 
         return response()->json(true);

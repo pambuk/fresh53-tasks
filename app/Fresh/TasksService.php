@@ -3,6 +3,7 @@ namespace App\Fresh;
 
 use App\Task;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 
 class TasksService
@@ -16,6 +17,11 @@ class TasksService
     {
         $task = new Task();
         $task->fill($data);
+
+        if ($task->status === Task::STATUS_FINISHED) {
+            $task->finished = new Carbon();
+        }
+
         $user->tasks()->save($task);
 
         return $this->get($task->id);
@@ -24,6 +30,7 @@ class TasksService
     /**
      * @param int $id
      * @return Task
+     * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
     public function get(int $id) : Task
     {

@@ -40,6 +40,7 @@ namespace App{
  * @property string $estimated_end
  * @property \Carbon\Carbon $created_at
  * @property \Carbon\Carbon $updated_at
+ * @property string $finished
  * @property-read \App\User $user
  * @method static \Illuminate\Database\Query\Builder|\App\Task whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Task whereUserId($value)
@@ -48,6 +49,7 @@ namespace App{
  * @method static \Illuminate\Database\Query\Builder|\App\Task whereEstimatedEnd($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Task whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\App\Task whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\App\Task whereFinished($value)
  */
 	class Task extends \Eloquent {}
 }

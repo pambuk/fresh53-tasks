@@ -1,12 +1,12 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace App\Exceptions;
 
 use Exception;
-use GrahamCampbell\Exceptions\NewExceptionHandler;
 use Illuminate\Auth\AuthenticationException;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
-class Handler extends NewExceptionHandler
+class Handler extends ExceptionHandler
 {
     /**
      * A list of the exception types that should not be reported.

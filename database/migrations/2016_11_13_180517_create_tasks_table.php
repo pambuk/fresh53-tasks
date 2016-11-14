@@ -20,6 +20,7 @@ class CreateTasksTable extends Migration
             $table->text('description');
             $table->boolean('status')->default(0);
             $table->date('estimated_end')->nullable();
+            $table->date('finished')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();

@@ -11,7 +11,7 @@
                 <h4>Pending</h4>
                 <ul class="list-unstyled">
                     <li @click="changeStatus(todo)" v-for="todo in pending" style="cursor:pointer;">
-                        {{ todo.id }}. {{ todo.description }} <small style="color: #aaaaaa" v-if="todo.estimated_end">Deadline: {{ todo.estimated_end }}</small>
+                        {{ todo.description }} <small style="color: #aaaaaa" v-if="todo.estimated_end">Deadline: {{ todo.estimated_end }}</small>
                     </li>
                 </ul>
             </div>

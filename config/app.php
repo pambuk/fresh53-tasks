@@ -178,7 +178,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        \GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
         \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         \Barryvdh\Debugbar\ServiceProvider::class,
     ],
