@@ -9,12 +9,16 @@ const getters = {
         return state.list.filter(todo => todo.status);
     },
 
+    pending: state => {
+        return state.list.filter(todo => !todo.status);
+    },
+
     completedCount: (state, getters) => {
         return getters.completed.length;
     },
 
-    todos: state => {
-        return state.list;
+    totalCount: state => {
+        return state.list.length;
     }
 };
 

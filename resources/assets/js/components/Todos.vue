@@ -1,18 +1,30 @@
 <template>
     <div>
-
-        <div>
-            <input type="text" v-model="newTask.description" />
-            <input type="date" v-model="newTask.estimated_end" />
-            <button @click="add(newTask)">Add</button>
+        <div class="form-group form-inline">
+            <input v-model="newTask.description" placeholder="New Task" style="width: 60%" class="form-control" type="text" />
+            <input v-model="newTask.estimated_end" style="width: 175px" class="form-control" type="date" />
+            <button class="btn btn-success" @click="add(newTask); newTask = {}">Add</button>
         </div>
 
-        <p>Completed: {{ completedCount }}</p>
-        <ul>
-            <li @click="changeStatus(todo)" v-for="todo in todos" style="cursor:pointer;">
-                {{ todo.id }} {{ todo.description }} {{ todo.status ? 'Completed' : 'In progress' }}
-            </li>
-        </ul>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <h4>Pending</h4>
+                <ul class="list-unstyled">
+                    <li @click="changeStatus(todo)" v-for="todo in pending" style="cursor:pointer;">
+                        {{ todo.id }}. {{ todo.description }} <small style="color: #aaaaaa" v-if="todo.estimated_end">Deadline: {{ todo.estimated_end }}</small>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-6">
+                <h4>Completed</h4>
+                <ul class="list-unstyled">
+                    <li @click="changeStatus(todo)" v-for="todo in completed" style="cursor:pointer;">
+                        {{ todo.id }}. {{ todo.description }}
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -28,8 +40,7 @@
         },
         computed: {
             ...mapGetters([
-                'todos',
-                'completedCount'
+                'pending', 'completed'
             ])
         },
         methods: {
