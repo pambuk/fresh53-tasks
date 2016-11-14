@@ -7,7 +7,7 @@ import VueRouter from 'vue-router';
 import App from './components/App.vue';
 import Todos from './components/Todos.vue';
 import Settings from './components/Settings.vue';
-import store from './store-todos';
+import store from './store';
 
 Vue.use(VueResource);
 Vue.use(VueRouter);

@@ -1,17 +1,18 @@
-<?php
+<?php declare(strict_types = 1);
 namespace App\Fresh;
 
 use App\Task;
 use App\User;
+use Illuminate\Database\Eloquent\Collection;
 
 class TasksService
 {
-    public function getAllForUser(User $user)
+    public function getAllForUser(User $user) : Collection
     {
         return $user->tasks;
     }
 
-    public function add($data, User $user)
+    public function add(array $data, User $user) : Task
     {
         $task = new Task();
         $task->fill($data);
@@ -20,12 +21,16 @@ class TasksService
         return $this->get($task->id);
     }
 
-    public function get($id)
+    /**
+     * @param int $id
+     * @return Task
+     */
+    public function get(int $id) : Task
     {
         return Task::findOrFail($id);
     }
 
-    public function delete($id)
+    public function delete(int $id) : int
     {
         return Task::destroy($id);
     }

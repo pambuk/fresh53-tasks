@@ -10,7 +10,7 @@
         <p>Completed: {{ completedCount }}</p>
         <ul>
             <li @click="changeStatus(todo)" v-for="todo in todos" style="cursor:pointer;">
-                {{ todo.id }} {{ todo.description }} {{ todo.status }}
+                {{ todo.id }} {{ todo.description }} {{ todo.status ? 'Completed' : 'In progress' }}
             </li>
         </ul>
     </div>
