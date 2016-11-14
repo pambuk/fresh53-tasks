@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'Todoo',
 
     /*
     |--------------------------------------------------------------------------
@@ -178,8 +178,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        \GrahamCampbell\Exceptions\ExceptionsServiceProvider::class,
-
+        \Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        \Barryvdh\Debugbar\ServiceProvider::class,
     ],
 
     /*

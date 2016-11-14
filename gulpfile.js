@@ -14,6 +14,10 @@ require('laravel-elixir-vue-2');
  */
 
 elixir((mix) => {
-    mix.sass('app.scss')
-       .webpack('app.js');
+    mix
+        .sass('app.scss')
+        .webpack('app.js', null, null, {cache: false})
+        // .webpack('app-todos.js')
+        .copy('resources/assets/js/vendor/jquery-3.1.1.min.js', 'public/js/jquery-3.1.1.min.js')
+        .copy('resources/assets/js/vendor/YTPlayer.min.js', 'public/js/YTPlayer.min.js');
 });

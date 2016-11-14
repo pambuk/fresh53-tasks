@@ -4086,6 +4086,10 @@ vue-resource@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/vue-resource/-/vue-resource-1.0.3.tgz#8d52d0d8a9ed5f2ae704c68d530c84ceaf97be14"
 
+vue-router:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-2.0.1.tgz#88b83cdc9497bad5b20b579e847a7e7240e221dd"
+
 vue-style-loader@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/vue-style-loader/-/vue-style-loader-1.0.0.tgz#abeb7bd0f46313083741244d3079d4f14449e049"
@@ -4106,6 +4110,10 @@ vue-template-es2015-compiler@^1.0.0:
 vue@^2.0.1:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.0.3.tgz#3f7698f83d6ad1f0e35955447901672876c63fde"
+
+vuex:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-2.0.0.tgz#26befa44de220f009e432d1027487bff29571cee"
 
 watchpack@^0.2.1:
   version "0.2.9"
