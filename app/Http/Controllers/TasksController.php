@@ -57,10 +57,7 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id, TasksService $tasks)
     {
-        $task = $tasks->get($id);
-        $task->fill($request->input('params.todo'));
-        $task->save();
-
+        $task = $tasks->update($id, $request->input('params.todo'));
         return response()->json(['task' => $task, ]);
     }
 

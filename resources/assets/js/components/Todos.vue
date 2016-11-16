@@ -29,7 +29,6 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
     import {mapActions} from 'vuex';
 
     export default {
@@ -39,9 +38,12 @@
             };
         },
         computed: {
-            ...mapGetters([
-                'pending', 'completed'
-            ])
+            pending: self => {
+                return _.sortBy(self.$store.getters.pending, ['estimated_end']);
+            },
+            completed: self => {
+                return _.sortBy(self.$store.getters.completed, ['finished']).reverse();
+            }
         },
         methods: {
             ...mapActions({
