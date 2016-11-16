@@ -19,8 +19,8 @@
             <div class="col-md-6">
                 <h4>Completed</h4>
                 <ul class="list-unstyled">
-                    <li @click="changeStatus(todo)" v-for="todo in completed" style="cursor:pointer;">
-                        {{ todo.id }}. {{ todo.description }}
+                    <li v-for="todo in completed" style="cursor:pointer;">
+                        {{ todo.description }} <i @click="deleteTodo(todo)" class="fa fa-trash"></i>
                     </li>
                 </ul>
             </div>
@@ -29,7 +29,6 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex';
     import {mapActions} from 'vuex';
 
     export default {
@@ -39,14 +38,18 @@
             };
         },
         computed: {
-            ...mapGetters([
-                'pending', 'completed'
-            ])
+            pending: self => {
+                return _.sortBy(self.$store.getters.pending, ['estimated_end']);
+            },
+            completed: self => {
+                return _.sortBy(self.$store.getters.completed, ['finished']).reverse();
+            }
         },
         methods: {
             ...mapActions({
                 changeStatus: 'changeTodoStatus',
-                add: 'addTodo'
+                add: 'addTodo',
+                deleteTodo: 'deleteTodo'
             })
         }
     }

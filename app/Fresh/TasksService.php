@@ -1,4 +1,5 @@
-<?php declare(strict_types = 1);
+<?php
+declare(strict_types = 1);
 namespace App\Fresh;
 
 use App\Task;
@@ -17,11 +18,6 @@ class TasksService
     {
         $task = new Task();
         $task->fill($data);
-
-        if ($task->status === Task::STATUS_FINISHED) {
-            $task->finished = new Carbon();
-        }
-
         $user->tasks()->save($task);
 
         return $this->get($task->id);
@@ -40,5 +36,19 @@ class TasksService
     public function delete(int $id) : int
     {
         return Task::destroy($id);
+    }
+
+    public function update(int $id, array $all)
+    {
+        $task = $this->get($id);
+        $task->fill($all);
+
+        if ($task->status === Task::STATUS_FINISHED) {
+            $task->finished = new Carbon();
+        }
+
+        $task->save();
+
+        return $this->get($id);
     }
 }

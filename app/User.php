@@ -9,11 +9,16 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'email', 'password', 'api_token',
+        'name',
+        'email',
+        'password',
+        'api_token',
     ];
 
     protected $hidden = [
-        'password', 'remember_token', 'api_token',
+        'password',
+        'remember_token',
+        'api_token',
     ];
 
     public function activate()
@@ -24,7 +29,7 @@ class User extends Authenticatable
         return $this;
     }
 
-    public static function getApiToken()
+    public static function getApiToken() : string
     {
         return \Auth::check() ? \Auth::user()->api_token : '';
     }

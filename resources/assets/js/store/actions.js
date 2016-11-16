@@ -32,3 +32,12 @@ export const loadTodos = ({commit}) => {
         }
     );
 };
+
+export const deleteTodo = ({commit}, todo) => {
+    Vue.http.delete('/api/tasks/'+todo.id)
+        .then(() => {
+            commit(types.DELETE_TODO, todo);
+        }, response => {
+// @todo handle
+        });
+};

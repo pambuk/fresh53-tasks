@@ -33,6 +33,10 @@ const mutations =
         state.list.forEach(todo => {
             if (payload.id === todo.id) {
                 todo.done = !todo.done;
+
+                if (todo.done) {
+                    todo.finished = payload.finished;
+                }
             }
         });
     },
@@ -40,6 +44,13 @@ const mutations =
     [types.ADD_TODOS](state, payload)
     {
         state.list = payload;
+    },
+
+    [types.DELETE_TODO](state, payload)
+    {
+        state.list = _.filter(state.list, (todo) => {
+            return todo.id !== payload.id;
+        });
     }
 };
 
