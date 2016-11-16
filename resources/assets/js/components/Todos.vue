@@ -19,8 +19,8 @@
             <div class="col-md-6">
                 <h4>Completed</h4>
                 <ul class="list-unstyled">
-                    <li @click="changeStatus(todo)" v-for="todo in completed" style="cursor:pointer;">
-                        {{ todo.id }}. {{ todo.description }}
+                    <li v-for="todo in completed" style="cursor:pointer;">
+                        {{ todo.description }} <i @click="deleteTodo(todo)" class="fa fa-trash"></i>
                     </li>
                 </ul>
             </div>
@@ -48,7 +48,8 @@
         methods: {
             ...mapActions({
                 changeStatus: 'changeTodoStatus',
-                add: 'addTodo'
+                add: 'addTodo',
+                deleteTodo: 'deleteTodo'
             })
         }
     }

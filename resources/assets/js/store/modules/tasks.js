@@ -44,6 +44,13 @@ const mutations =
     [types.ADD_TODOS](state, payload)
     {
         state.list = payload;
+    },
+
+    [types.DELETE_TODO](state, payload)
+    {
+        state.list = _.filter(state.list, (todo) => {
+            return todo.id !== payload.id;
+        });
     }
 };
 
