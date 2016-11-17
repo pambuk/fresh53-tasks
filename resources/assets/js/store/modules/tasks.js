@@ -1,7 +1,8 @@
 import * as types from '../mutation-types';
 
 const state = {
-    list: []
+    list: [],
+    errors: []
 };
 
 const getters = {
@@ -19,6 +20,10 @@ const getters = {
 
     totalCount: state => {
         return state.list.length;
+    },
+
+    errors: state => {
+        return state.errors;
     }
 };
 
@@ -51,6 +56,16 @@ const mutations =
         state.list = _.filter(state.list, (todo) => {
             return todo.id !== payload.id;
         });
+    },
+
+    [types.ADD_DELETE_TODO_ERRORS](state, payload)
+    {
+        state.errors = payload;
+    },
+
+    [types.CLEAR_ERRORS](state)
+    {
+        state.errors = [];
     }
 };
 

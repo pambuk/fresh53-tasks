@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Fresh\TasksService;
 use App\Http\Requests\TaskRequest;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -64,19 +65,27 @@ class TasksController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int $id
+     * @param int $id
      * @param TasksService $tasks
      * @return \Illuminate\Http\Response
      * @throws \Exception
      */
     public function destroy($id, TasksService $tasks)
     {
-        $task = $tasks->get($id);
-        if ($task->user->id !== \Auth::user()->id) {
-            throw new \Exception('Task belongs to someone else', Response::HTTP_FORBIDDEN);
+        try {
+            $task = $tasks->get($id);
+            if ($task->user->id !== \Auth::user()->id) {
+                throw new \Exception('Task belongs to someone else', Response::HTTP_FORBIDDEN);
+            }
+
+            $tasks->delete($id);
+            $response = response()->json(['deleted' => $id,]);
+        } catch (ModelNotFoundException $e) {
+            $response = response()->json(['This task doesn\'t seem to exist any more'], Response::HTTP_UNPROCESSABLE_ENTITY);
+        } catch (\Exception $e) {
+            $response = response()->json(['There seems to be a problem...'], Response::HTTP_UNPROCESSABLE_ENTITY);
         }
 
-        $tasks->delete($id);
-        return response()->json(['deleted' => $id, ]);
+        return $response;
     }
 }
