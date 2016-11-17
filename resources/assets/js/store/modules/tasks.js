@@ -1,7 +1,8 @@
 import * as types from '../mutation-types';
 
 const state = {
-    list: []
+    list: [],
+    errors: []
 };
 
 const getters = {
@@ -19,6 +20,10 @@ const getters = {
 
     totalCount: state => {
         return state.list.length;
+    },
+
+    errors: state => {
+        return state.errors;
     }
 };
 

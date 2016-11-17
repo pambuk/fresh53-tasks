@@ -1,9 +1,14 @@
 <template>
     <div>
+
+        <div v-if="errors.length">
+            <p class="text-danger" v-for="error in errors">{{ error }}</p>
+        </div>
+
         <div class="form-group form-inline">
             <input v-model="newTask.description" placeholder="New Task" style="width: 60%" class="form-control" type="text" />
             <input v-model="newTask.estimated_end" style="width: 175px" class="form-control" type="date" />
-            <button class="btn btn-success" @click="add(newTask); newTask = {}">Add</button>
+            <button class="btn btn-success" @click="add(newTask); newTask.description = ''">Add</button>
         </div>
 
         <div class="col-md-12">
@@ -32,6 +37,7 @@
 
 <script>
     import {mapActions} from 'vuex';
+    import {mapGetters} from 'vuex';
     import moment from 'moment';
 
     export default {
@@ -48,7 +54,8 @@
             },
             completed: self => {
                 return _.sortBy(self.$store.getters.completed, ['finished']).reverse();
-            }
+            },
+            ...mapGetters(['errors'])
         },
         methods: {
             ...mapActions({

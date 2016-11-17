@@ -14,13 +14,16 @@ export const changeTodoStatus = ({commit}, todo) => {
     );
 };
 
-export const addTodo = ({commit}, todo) => {
+export const addTodo = (context, todo) => {
+    context.state.tasks.errors = [];
     Vue.http.post('/api/tasks', todo).then(
         response => {
-            commit(types.ADD_TODO, response.data.task);
+            context.commit(types.ADD_TODO, response.data.task);
         },
         response => {
-// @todo handle this
+            context.state.tasks.errors = Object
+                .keys(response.data)
+                .map(key => response.data[key][0]);
         }
     );
 };
@@ -33,10 +36,10 @@ export const loadTodos = ({commit}) => {
     );
 };
 
-export const deleteTodo = ({commit}, todo) => {
+export const deleteTodo = (context, todo) => {
     Vue.http.delete('/api/tasks/'+todo.id)
         .then(() => {
-            commit(types.DELETE_TODO, todo);
+            context.commit(types.DELETE_TODO, todo);
         }, response => {
 // @todo handle
         });
