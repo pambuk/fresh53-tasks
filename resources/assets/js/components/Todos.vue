@@ -10,8 +10,10 @@
             <div class="col-md-6">
                 <h4>Pending</h4>
                 <ul class="list-unstyled">
-                    <li @click="changeStatus(todo)" v-for="todo in pending" style="cursor:pointer;">
+                    <li v-for="todo in pending" style="cursor:pointer;">
                         {{ todo.description }} <small style="color: #aaaaaa" v-if="todo.estimated_end">Deadline: {{ todo.estimated_end }}</small>
+                        <i @click="changeStatus(todo)" class="fa fa-thumbs-up"></i>
+                        <i @click="deleteTodo(todo)" class="fa fa-trash"></i>
                     </li>
                 </ul>
             </div>
@@ -30,11 +32,14 @@
 
 <script>
     import {mapActions} from 'vuex';
+    import moment from 'moment';
 
     export default {
         data() {
             return {
-                newTask: {}
+                newTask: {
+                    estimated_end: moment().format('YYYY-MM-DD')
+                }
             };
         },
         computed: {
